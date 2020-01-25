@@ -1,32 +1,46 @@
-<template>
-  <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
-    <router-view/>
-  </div>
+<template lang="pug">
+  #default.d-flex-column
+    vue-progress-bar
+    Header
+    .columns.flex-1
+      .main.d-flex-column
+        .under-header
+          .page-main
+            section.section
+              .container
+                slot(name="notifications")
+                slot
+        Footer.footer
 </template>
 
-<style lang="scss">
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
+<script>
+import Header from '@/components/layouts/element/Header.vue';
+import Footer from '@/components/layouts/element/Footer.vue';
 
-#nav {
-  padding: 30px;
+export default {
+  components: { Header, Footer },
+};
+</script>
 
-  a {
-    font-weight: bold;
-    color: #2c3e50;
+<style lang="sass" scoped>
+  #default
+    position: relative
+    min-height: 100vh
+    display: flex
 
-    &.router-link-exact-active {
-      color: #42b983;
-    }
-  }
-}
+    .main
+      flex-grow: 1
+
+    .sidebar
+      width: 24rem
+      padding: 3rem 3rem 3rem 2rem
+      background: white
+
+    .under-header
+      display: flex
+      flex-direction: row
+      flex: 1
+
+    .page-main
+      width: 100%
 </style>
