@@ -1,29 +1,25 @@
 <template lang="pug">
   nav.navbar.has-shadow(role='navigation', aria-label='main navigation')
     .navbar-brand
-      router-link.navbar-item(:to="{name: 'index'}")
-        img(src='@/assets/img/logo/tut-logo.png', width='112', height='28')
+      router-link.navbar-item(:to="{name: 'home'}")
+        img(src='@/assets/img/blinker.png', width='112', height='28')
       a.navbar-burger.burger(role='button' :class="[active ? 'is-active' : null]")
         span(aria-hidden='true')
         span(aria-hidden='true')
         span(aria-hidden='true')
     .navbar-menu
       .navbar-start
-        router-link.navbar-item(:to="{name: 'map'}")
-          | {{ 'SiteMap (Dev)' }}
+        router-link.navbar-item(:to="{name: 'home'}")
+          | Home
       .navbar-end
-        a.navbar-item(@click.prevent='switchLang')
-          b-icon.mr-5(icon="earth")
-          |
-          | {{ 'switch' }}
         .navbar-item
           .tags.has-addons
-            span.tag Mode
-            span.tag.is-warning TUT Site
+            span.tag Environment
+            span.tag.is-warning Development/Staging
         .navbar-item
           .buttons
-            router-link.button.is-primary(:to="{name: isAuthenticated ? 'my-account' : 'auth'}")
-              strong {{ isAuthenticated ? 'Profile' : 'Sign in'}}
+            router-link.button.is-primary(:to="{name: 'my-account'}")
+              strong {{ 'Profile' }}
 </template>
 
 <script>

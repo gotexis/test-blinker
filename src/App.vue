@@ -9,7 +9,7 @@
             section.section
               .container
                 slot(name="notifications")
-                slot
+                router-view
         Footer.footer
 </template>
 

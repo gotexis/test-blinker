@@ -1,5 +1,6 @@
 import Vue from 'vue';
 import VueProgressBar from 'vue-progressbar';
+import Buefy from 'buefy';
 import App from './App.vue';
 import router from './router';
 import store from './store';
@@ -12,6 +13,8 @@ Vue.use(VueProgressBar, {
   failedColor: 'rgb(205, 33, 13)',
   height: '3px',
 });
+
+Vue.use(Buefy);
 
 new Vue({
   router,

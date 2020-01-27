@@ -1,46 +1,52 @@
 <template lang="pug">
   .home.has-text-centered
     img(src="@/assets/logo.png")
-    h1.title.is-size-2 TUT
-    p TUT site makes everyone's life easier.
-    hr
+    h1.title.is-size-2 Blinker
+    p Blinker site makes everyone's life easier.
+    br
     .d-flex.flex-justify-center
       b-field
         .control.search-box.is-clearfix
           input.input(
-            placeholder="Input university, country, course..."
-            v-model="searchInput.value"
+            placeholder="Input make, model or keyword..."
+            v-model="searchInput"
             @input="messageActivated = true"
             v-on:keyup.enter="find"
           )
         .control
           button.button.is-primary(
             @click="find"
-            :disabled="messageActivated && String(searchInput.value).length < 3"
+            :disabled="messageActivated && String(searchInput).length < 3"
           ) Find
     p {{ message }}
 </template>
 
 <script>
-// import { CharField } from '@/utils/forms/field'
 
 export default {
   methods: {
     find() {
-      if (String(this.searchInput.value).length < 3) return (this.messageActivated = true);
+      if (String(this.searchInput).length < 3) {
+        this.messageActivated = true;
+        return;
+      }
       this.$router.push({
-        name: 'mentor-find',
+        name: 'search',
+        query: {
+          q: this.searchInput,
+        },
       });
     },
   },
   data() {
     return {
       messageActivated: false,
+      searchInput: '',
     };
   },
   computed: {
     message() {
-      if (this.messageActivated && String(this.searchInput.value).length < 3) {
+      if (this.messageActivated && String(this.searchInput).length < 3) {
         return 'Input more than 3 characters';
       }
       return '';

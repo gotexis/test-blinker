@@ -3,8 +3,8 @@
         .content.has-text-right
             .columns
                 .column.is-3
-                    p TUT
-                    p.grey © 2020 TUT Inc. All Rights Reserved
+                    p Blinker
+                    p.grey © 2020 Blinker Inc. All Rights Reserved
                 .column.is-2
                 .column.has-text-left.lightgrey
                     p.is-size-4 {{ quote.quote }}
@@ -16,7 +16,7 @@
                     p.grey gotexis@gmail.com
                 .column.is-2
                 .column.has-text-left
-                    p   T U T Agency platform
+                    p   Blinker Inc.
                         |  by
                         |
                         a(href='https://github.com/gotexis' target="_blank") Exis Zhang
