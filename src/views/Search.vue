@@ -6,14 +6,15 @@
     .columns
       .column
         label.label Keyword
-        b-field
-          b-input(
-            placeholder="Input make, model or keyword..."
-            v-model="searchInput"
-            expanded
-          )
-          .control
-            b-button.is-primary Find
+        form(@submit="research")
+          b-field
+            b-input(
+              placeholder="Input make, model or keyword..."
+              v-model="searchInput"
+              expanded
+            )
+            .control
+              b-button.is-primary(native-type="submit") Find
       .column
         b-field(label='Buy price')
           b-slider(v-model='priceRange', :min='0', :max='100000', :step='1000' lazy)
@@ -29,6 +30,7 @@
 <script>
 import axios from 'axios';
 import qs from 'qs';
+import { mapActions, mapGetters } from 'vuex';
 import Card from '@/components/Card.vue';
 
 export default {
@@ -40,13 +42,16 @@ export default {
     return {
       carList: [],
       priceRange: [0, 100000],
+      searchInput: '',
     };
   },
 
   computed: {
-    getCarList() {
-      return this.carList.filter(x => !!x.stock_item_id);
-    },
+    ...mapGetters(
+      'demo', [
+        'getCarList',
+      ],
+    ),
   },
 
   watch: {
@@ -59,6 +64,11 @@ export default {
   },
 
   methods: {
+    ...mapActions(
+      'demo', [
+        'search',
+      ],
+    ),
     research() {
       this.$router.push({
         name: 'search',
@@ -76,8 +86,7 @@ export default {
         paramsSerializer: params => qs.stringify(params, { arrayFormat: 'brackets' }).replace(/%2B/g, '+').replace(/%5B/g, '[').replace(/%5D/g, ']')
           .replace(/\[]\[]/g, '[]'),
       });
-      this.carList = response.data.data;
-      console.log(this.carList);
+      this.search(response.data.data);
     },
   },
 
